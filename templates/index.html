@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <meta charset="utf-8">
+      <title>Accueil</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+   </head>
+   <body>
+      <div class = "blocaccueil">
+         <h1>Identification:</h1>
+         {% if error %}
+         <p class="err">{{error}}</p>
+         {% endif %}
+         <span id = "auth-err"></span>
+         <form id="authentification" action="/" method="POST">
+            <table>
+               <tr>
+                  <td><label for="matricule">Matricule:</label></td>
+                  <td><input type="text" id="matricule" name="matricule"></td>
+               </tr>
+               <tr>
+                  <td><input type="submit" value="confirmer" id="sub"></td>
+                  <td></td>
+               </tr>
+            </table>
+         </form>
+      </div>
+      <script src="{{ url_for('static', filename = 'app.js' ) }}"></script>
+   </body>
+</html>

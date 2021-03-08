@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <meta charset="utf-8">
+      <title>Ajout d'horaire</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+   </head>
+   <body>
+      <div class="blocajouthoraire">
+         <h1>ID: {{ matricule }} <br>
+            Date: <a href='{{ url_for('hier', matricule=matricule, date_du_jour=date_du_jour)}}'>-</a>
+            {{ date_du_jour }}
+            <a href='{{ url_for('demain', matricule=matricule, date_du_jour=date_du_jour)}}'>+</a>
+         </h1>
+         {% if msgerr %}
+         <p class="err">{{msgerr}}</p>
+         {% endif %}
+         <span id="code-projet-err"></span>
+         <span id="duree-err"></span>
+         <form id="ajouthoraire" action='{{ url_for('confirmation', matricule=matricule, date_du_jour=date_du_jour)}}' method="POST">
+         <table>
+            <tr>
+               <td><label for="codeprojet">Code de projet</label></td>
+               <td><input type="text" id="codeprojet" name="codeprojet"></td>
+            </tr>
+            <tr>
+               <td><label for="duree">Durée</label></td>
+               <td><input type="number" id="duree" name="duree"></td>
+            </tr>
+            <tr>
+               <td><input type="submit" value="ajouter" id="sub"></td>
+               <td></td>
+            </tr>
+         </table>
+         </form>
+      </div>
+      <div class= "blochoraire">
+         <h1>Horaire:</h1>
+         <table>
+            <tr>
+               <th>code de projet</th>
+               <th>durée</th>
+               <th></th>
+               <th></th>
+            </tr>
+            {% for heure in heures %}
+            <tr>
+               <td>{{ heure[1] }}</td>
+               <td>{{ heure[2] }} min </td>
+               <td><a href="/delete/{{ matricule }}/{{ date_du_jour }}/{{ heure[0] }}"><img src="{{ url_for('static', filename = 'delete.png') }}" alt="supprimer"> </a></td>
+               <td><a href="/edit/{{ matricule }}/{{ date_du_jour }}/{{ heure[0] }}"><img src="{{ url_for('static', filename = 'edit.png') }}" alt="modifier"></a> </td>
+            </tr>
+            {% endfor %}    
+         </table>
+      </div>
+      <script src="{{ url_for('static', filename = 'app.js' ) }}"></script>
+   </body>
+</html>

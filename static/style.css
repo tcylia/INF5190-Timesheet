@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Castoro&display=swap');
+
+body {
+    background-image: url("background.jpg");
+    font-family: 'Castoro', serif;
+}
+
+.err {
+    color: #d1a2a2;
+
+}
+
+table {
+    color: white;
+}
+
+label {
+    color:white;
+}
+
+
+h1 {
+    color: white;
+}
+
+a {
+    color: #645cd6;
+}
+a:hover {
+    text-decoration: none;
+}
+div.blocaccueil {
+    max-width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+div.blocaccueil label {
+    display: block;
+    padding: 0.25rem 0;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+div.blocaccueil input, textarea {
+    display: block;
+    width: 90%;
+    border:1px solid #b8bdb5;
+    background-color:rgba(0, 0, 0, 0.5);
+    padding: .5rem;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+}
+
+div.blocajouthoraire {
+    max-width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+    position: relative;
+    right: 15em;
+    text-align: center;
+}
+
+div.blocajouthoraire label {
+    display: block;
+    padding: 0.25rem 0;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+div.blocajouthoraire input, textarea {
+    display: block;
+    width: 90%;
+    border:1px solid #b8bdb5;
+    background-color:rgba(0, 0, 0, 0.5);
+    padding: .5rem;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+}
+
+div.blochoraire {
+    width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0em;
+    left: 44em;
+}
+
+div.blochoraire h1 {
+    text-align: center;
+}
+
+div.blochoraire table {
+    border: 1px solid;
+    border-color: #b8bdb5;
+    padding: 1em;
+    width: 25em;
+}
+div.blochoraire tr {
+    border: 1px solid #b8bdb5;
+}
+
+div.blochoraire table {
+	margin-top: 5%;
+	position: relative;
+    border-collapse: collapse;
+
+}
+
+div.blochoraire table, div.blochoraire td, div.blochoraire th {
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  text-align: center;
+
+}
+
+div.blochoraire tr:hover {
+    background-color:#f5f5f5;
+    color: black;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+#sub {
+    font-family: 'Castoro', serif;
+    border: 0;
+    position: relative;
+    left: 8em;
+    background: #545454;
+    padding: 0.5rem;
+    margin-right: 5rem;
+    color: white;
+    margin:1rem 0;
+    width: auto;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .4s ease;
+}
+#sub:hover {
+    background: #645cd6;
+}
+
+div.bloclistemois {
+    max-width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+div.bloclistemois h1 {
+    position: relative;
+    left: 2em;
+}
+
+div.bloclistemois div#listemois {
+    position: relative;
+    left: 3em;
+}
+
+div.bloclistemois div#listemois a div {
+  
+    color: white;
+    font-size: 1.5em;
+    position: relative;
+    left: 3em;
+    color: white;
+}
+
+div.blocerreur {
+    position: relative;
+    top: 10em;
+    max-width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+    color:white;
+}
+
+div.blocerreur h2 {
+    text-align: center;
+}
+
+
+div.blocerreur p {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+div.blocmodifierheure {
+    max-width: 25em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+}
+
+div.blocmodifierheure label {
+    display: block;
+    padding: 0.25rem 0;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+div.blocmodifierheure input, textarea {
+    display: block;
+    width: 90%;
+    border:1px solid #b8bdb5;
+    background-color:rgba(0, 0, 0, 0.5);
+    padding: .5rem;
+    font-size: 16px;
+    border-radius: 4px;
+    color: white;
+}
+
+
+
+div.blocoverview {
+    width: 50em;
+    height: 30em;
+    margin:2rem auto;
+    border:1px solid #b8bdb5;
+    padding: 2rem;
+    border-radius: 4px;
+    background-color:rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+
+
+div.blocoverview div.jours-min:hover {
+    background-color:#f5f5f5;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+
+div.blocoverview div.jours {
+    display: grid;
+    width: 3em;
+    height: 3em;
+    
+}
+
+div.blocoverview div.minutes {
+    position: relative;
+    left: 2em;
+    top: -93.77em;
+}
+
+div.blocoverview div.minutes div.min {
+    display: grid;
+    position: relative;
+    width: 3em;
+    height: 3em;
+    left: 2em;
+    background-color:rgba(0, 0, 0, 0.5);  
+}
+
+div.days {
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: repeat(5,1fr);
+    position:relative;
+    right: 1em;
+}
+
+div.days div.jours-min {
+    border: 1px solid black;
+}

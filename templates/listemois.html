@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Mois travaillés</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+
+    </head>
+    <body>
+    <div class="bloclistemois">
+        <h1>Heures déclarées:</h1>
+        <div id="listemois">
+            {% for mois in liste_mois %}
+                <a href="/{{matricule}}/overview/{{ mois[0] }}"><div id="mois"> {{ mois[1] }}</div></a>
+            {% endfor %}
+        </div>
+    </div>
+    </body>   
+</html>

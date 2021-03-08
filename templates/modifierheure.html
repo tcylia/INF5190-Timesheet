@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+      <meta charset="utf-8">
+      <title>Modifier un horaire</title>
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+   </head>
+   <body>
+      <div class="blocmodifierheure">
+         <h1>User: {{ matricule }} <br>
+            Date:  {{ date_du_jour }} <br>
+         </h1>
+         <h1>Modifier un horaire</h1>
+         {% if error %}
+         <p class="err">{{error}}</p>
+         {% endif %}
+         <span id = "code-projet-modif-err"></span>
+         <span id = "duree-modif-err"></span>
+         <form id="modificationhoraire" action="/update/{{ matricule }}/{{ date_du_jour }}/{{ id }}" method="POST">
+            <table>
+               <tr>
+                  <td><label for="codeprojet">Code de projet:</label></td>
+                  <td><input type="text" id="codeprojet" name="codeprojet"></td>
+                  <td><label for="duree">Durée:</label></td>
+                  <td><input type="number" id="duree" name="duree"></td>
+               </tr>
+               <tr>
+                  <td><input type="submit" value="Confirmer" id=sub></td>
+                  <td></td><td></td><td></td>
+               </tr>
+            </table>
+         </form>
+      </div>
+   </body>
+</html>
