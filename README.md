@@ -22,6 +22,9 @@ facturation liée au temps travaillé.
 
 Pour activer l'environnement virtuel : `source env/bin/activate`
 
+#### Lancer Le serveur
+
+Pour lancer le serveur du site il suffit de taper la commade `make`
 
 ## Routes
 
