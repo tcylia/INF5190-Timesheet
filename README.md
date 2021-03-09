@@ -22,7 +22,21 @@ facturation liée au temps travaillé.
 
 Pour activer l'environnement virtuel : `source env/bin/activate`
 
-#### Lancer Le serveur
+##### Creer la base de donnees 
+
+Pour utiliser une nouvelle base de donnees : 
+
+`sqlite3 db/heures.db`
+
+`.read db/db.sql`
+
+`.exit`
+
+La base de donnees que j'ai crée permet de montrer les 
+
+données existantes a titre d'exemple/test.
+
+##### Lancer Le serveur
 
 Pour lancer le serveur du site il suffit de taper la commade `make`
 
