@@ -192,7 +192,7 @@ def heure(matricule, date_du_jour):
         "ajouthoraire.html",
         matricule=matricule,
         date_du_jour=date_du_jour,
-        heures=heures,
+        heures=heures
     )
 
 
@@ -213,7 +213,7 @@ def confirmation(matricule, date_du_jour):
             heures=heures,
             matricule=matricule,
             date_du_jour=date_du_jour,
-            msgerr=msg_err_champs,
+            msgerr=msg_err_champs
         )
     else:
         get_db().insert_heures(matricule, code_projet, date_du_jour, duree)
@@ -273,7 +273,7 @@ def mettre_a_jour(id, matricule, date_du_jour):
             matricule=matricule,
             date_du_jour=date_du_jour,
             id=id,
-            error=msg_err_champs,
+            error=msg_err_champs
         )
     else:
         get_db().modifier_heures(id, code_projet, duree)

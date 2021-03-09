@@ -14,6 +14,7 @@
          {% endif %}
          <span id="code-projet-err"></span>
          <span id="duree-err"></span>
+         <br>
          <form id="ajouthoraire" action='{{ url_for('confirmation', matricule=matricule, date_du_jour=date_du_jour)}}' method="POST">
          <table>
             <tr>
@@ -50,5 +51,5 @@
             {% endfor %}    
          </table>
       </div>
-      <script src="{{ url_for('static', filename = 'app.js' ) }}"></script>
+      <script src="{{ url_for('static', filename = 'add.js' ) }}"></script>
 {% endblock %}
