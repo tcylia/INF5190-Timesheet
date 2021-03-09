@@ -1,7 +1,13 @@
 window.onload = () => {
     var formulaireModificationHoraire = document.getElementById("modificationhoraire");
 
+    function clean() {
+        document.getElementById("code-projet-modif-err").innerHTML = "";
+        document.getElementById("duree-modif-err").innerHTML = "";
+    }
+
     formulaireModificationHoraire.addEventListener("submit", (event) => {
+        clean();
         var modifValide = true;
         codeProjetModif = document.getElementById("codeprojet").value;
         dureeModif = document.getElementById("duree").value;
@@ -9,7 +15,7 @@ window.onload = () => {
         if (codeProjetModif === "") {
             document.getElementById("code-projet-modif-err").innerHTML = "Le code de projet est un champs obligatoire. <br>";
             document.getElementById("code-projet-modif-err").style.color =  "#d1a2a2";
-            ajoutValide = false;
+            modifValide = false;
         }
  
         if (dureeModif === "") {

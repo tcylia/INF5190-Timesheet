@@ -1,8 +1,13 @@
 window.onload = () => {
     var formulaireAjoutHoraire = document.getElementById("ajouthoraire");
-   
+     
+    function clean() {
+        document.getElementById("code-projet-err").innerHTML = "";
+        document.getElementById("duree-err").innerHTML = "";
+    }
 
     formulaireAjoutHoraire.addEventListener("submit", (event) => {
+       clean();
        var ajoutValide = true;
        codeProjet = document.getElementById("codeprojet").value;
        duree = document.getElementById("duree").value;

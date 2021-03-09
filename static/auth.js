@@ -1,7 +1,12 @@
 window.onload = () => {
     var formulaireAuthentification = document.getElementById("authentification");
+  
+    function clean() {
+        document.getElementById("auth-err").innerHTML = "";
+    }
 
     formulaireAuthentification.addEventListener("submit", (event) => {
+        clean();
         var authValide = true;
         var matricule = document.getElementById("matricule").value;
         var matriculeRegex = new RegExp("^[A-Z][A-Z][A-Z]-\\d\\d$");
