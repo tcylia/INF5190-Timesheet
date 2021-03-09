@@ -8,9 +8,9 @@
    <body>
       <div class="blocajouthoraire">
          <h1>ID: {{ matricule }} <br>
-            Date: <a href='{{ url_for('hier', matricule=matricule, date_du_jour=date_du_jour)}}'>-</a>
+            Date: <a href='{{ url_for('jour_precedent', matricule=matricule, date_du_jour=date_du_jour)}}'>-</a>
             {{ date_du_jour }}
-            <a href='{{ url_for('demain', matricule=matricule, date_du_jour=date_du_jour)}}'>+</a>
+            <a href='{{ url_for('jour_suivant', matricule=matricule, date_du_jour=date_du_jour)}}'>+</a>
          </h1>
          {% if msgerr %}
          <p class="err">{{msgerr}}</p>

@@ -80,6 +80,86 @@ def calculer_min_par_jour(matricule, date_du_jour):
     else:
         return min_par_jour
 
+def obtenir_liste_mois(dates_string, liste_dates, liste_mois_mult):
+    liste_mois = []
+    # transformer liste de dates (String) en objet Datetime
+    for dates in dates_string:
+        date = datetime.strptime(str(dates[0]), "%Y-%m-%d")
+        liste_dates.append(date)
+    # extraire le mois et l'annee de la date
+    for dates in liste_dates:
+        mois = []
+        mois_iso = dates.strftime("%Y-%m")
+        mois_string = dates.strftime("%B %Y")
+        mois.append(mois_iso)
+        mois.append(mois_string)
+        liste_mois_mult.append(mois)
+    
+    duplicate = set()
+    for i in liste_mois_mult:
+        srtd = tuple(sorted(i))
+        if srtd not in duplicate:
+            liste_mois.append(i)
+            duplicate.add(srtd)
+    return liste_mois
+
+
+def get_calendar(matricule,mois):
+    nb_jours = calculer_nb_jours_par_mois(mois)
+    liste_jours_par_mois = []
+    day_month_min = []
+    for i in range(1, nb_jours + 1):
+        data = []
+        nb_min = 0
+        if i < 10:
+            day_of_month = "0" + str(i)
+        if i >= 10:
+            day_of_month = "" + str(i)
+        liste_jours_par_mois.append(mois + "-" + day_of_month)
+        nb_min = calculer_min_par_jour(matricule, liste_jours_par_mois[i - 1])[1]
+        data.append(liste_jours_par_mois[i - 1])
+        if nb_min is None:
+            nb_min = 0
+            data.append(nb_min)
+        else:
+            data.append(nb_min)
+        day_month_min.append(data)
+    
+    return day_month_min
+
+def reculer_un_jour(matricule, date_du_jour):
+    _matricule = matricule
+    _date = date_du_jour
+    day_before = datetime.strptime(_date, "%Y-%m-%d")
+    day_before -= timedelta(days=1)
+    day_before = day_before.strftime("%Y-%m-%d")
+    return day_before
+
+def avancer_un_jour(matricule, date_du_jour):
+    _matricule = matricule
+    _date = date_du_jour
+    day_after = datetime.strptime(_date, "%Y-%m-%d")
+    day_after += timedelta(days=1)
+    day_after = day_after.strftime("%Y-%m-%d")
+    return day_after
+
+def reculer_un_mois(matricule, mois):
+    mois_precedent = datetime.strptime(mois, "%Y-%m")
+    mois_precedent -= timedelta(weeks=4)
+    mois_precedent = mois_precedent.strftime("%Y-%m")
+    return mois_precedent
+
+def avancer_un_mois(matricule, mois):
+    mois_suivant = datetime.strptime(mois, "%Y-%m")
+    mois_suivant += timedelta(weeks=5)
+    mois_suivant = mois_suivant.strftime("%Y-%m")
+    return mois_suivant
+
+def get_mois_string(mois):
+    _mois = datetime.strptime(mois, "%Y-%m")
+    mois_string = datetime.strftime(_mois,"%B %Y")
+    return mois_string
+
 
 @app.route("/", methods=["GET", "POST"])
 def formulaire():
@@ -206,29 +286,8 @@ def overview(matricule, mois):
         return render_template("erreur.html", err=msg_err_matricule)
     if valider_mois(mois) == False:
         return render_template("erreur.html", err=msg_mois_invalide)
-    nb_jours = calculer_nb_jours_par_mois(mois)
-    _mois = datetime.strptime(mois, "%Y-%m")
-    mois_string = datetime.strftime(_mois,"%B %Y")
-    liste_jours_par_mois = []
-    day_month_min = []
-    for i in range(1, nb_jours + 1):
-        data = []
-        nb_min = 0
-        if i < 10:
-            day_of_month = "0" + str(i)
-        if i >= 10:
-            day_of_month = "" + str(i)
-        liste_jours_par_mois.append(mois + "-" + day_of_month)
-        nb_min = calculer_min_par_jour(matricule, liste_jours_par_mois[i - 1])[1]
-        data.append(liste_jours_par_mois[i - 1])
-        if nb_min is None:
-            nb_min = 0
-            data.append(nb_min)
-        else:
-            data.append(nb_min)
-        day_month_min.append(data)
-    
-
+    mois_string = get_mois_string(mois)
+    day_month_min = get_calendar(matricule,mois)
     return render_template(
         "overview.html", matricule=matricule, mois=mois, day_month_min=day_month_min,
                         mois_string=mois_string
@@ -241,71 +300,40 @@ def listemois(matricule):
         return render_template("erreur.html", err=msg_err_matricule)
     dates_string = get_db().get_dates(matricule)
     liste_dates = []
-    liste_mois_mult = []
-    liste_mois = []
-    dates_string = list(dict.fromkeys(dates_string))
-    # transformer liste de dates (String) en objet Datetime
-    for dates in dates_string:
-        date = datetime.strptime(str(dates[0]), "%Y-%m-%d")
-        liste_dates.append(date)
-    # extraire le mois et l'annee de la date
-    for dates in liste_dates:
-        mois = []
-        mois_iso = dates.strftime("%Y-%m")
-        mois_string = dates.strftime("%B %Y")
-        mois.append(mois_iso)
-        mois.append(mois_string)
-        liste_mois_mult.append(mois)
-    
-    duplicate = set()
-    for i in liste_mois_mult:
-        srtd = tuple(sorted(i))
-        if srtd not in duplicate:
-            liste_mois.append(i)
-            duplicate.add(srtd)
-    # enlever les doublons
+    liste_mois_unsorted = []
+    liste_mois = obtenir_liste_mois(dates_string, liste_dates, liste_mois_unsorted)
     return render_template("listemois.html", matricule=matricule, liste_mois=liste_mois)
 
 
 @app.route("/<matricule>/<date_du_jour>/hier")
-def hier(matricule, date_du_jour):
+def jour_precedent(matricule, date_du_jour):
     if valider_matricule(matricule) == False and valider_date(date_du_jour) == False:
         return render_template("erreur.html", err=msg_err_date_matricule)
     if valider_matricule(matricule) == False:
         return render_template("erreur.html", err=msg_err_matricule)
     if valider_date(date_du_jour) == False:
         return render_template("erreur.html", err=msg_err_date)
-    _matricule = matricule
-    _date = date_du_jour
-    day_before = datetime.strptime(_date, "%Y-%m-%d")
-    day_before -= timedelta(days=1)
-    day_before = day_before.strftime("%Y-%m-%d")
-    return redirect(url_for("heure", matricule=_matricule, date_du_jour=day_before))
+    jour_precedent = reculer_un_jour(matricule,date_du_jour)
+    return redirect(url_for("heure", matricule=matricule, date_du_jour=jour_precedent))
 
 
 @app.route("/<matricule>/<date_du_jour>/demain")
-def demain(matricule, date_du_jour):
+def jour_suivant(matricule, date_du_jour):
     if valider_matricule(matricule) == False and valider_date(date_du_jour) == False:
         return render_template("erreur.html", err=msg_err_date_matricule)
     if valider_matricule(matricule) == False:
         return render_template("erreur.html", err=msg_err_matricule)
     if valider_date(date_du_jour) == False:
         return render_template("erreur.html", err=msg_err_date)
-    _matricule = matricule
-    _date = date_du_jour
-    day_after = datetime.strptime(_date, "%Y-%m-%d")
-    day_after += timedelta(days=1)
-    day_after = day_after.strftime("%Y-%m-%d")
-    return redirect(url_for("heure", matricule=_matricule, date_du_jour=day_after))
+    jour_suivant = avancer_un_jour(matricule,date_du_jour)
+    return redirect(url_for("heure", matricule=matricule, date_du_jour=jour_suivant))
 
 
 @app.route("/<matricule>/overview/<mois>/mois_precedent")
 def mois_precedent(matricule, mois):
     if valider_matricule(matricule) == False:
         return render_template("erreur.html", err=msg_err_matricule)
-    mois_precedent = datetime.strptime(mois, "%Y-%m")
-    mois_precedent -= timedelta(weeks=4)
-    mois_precedent = mois_precedent.strftime("%Y-%m")
+    mois_precedent = reculer_un_mois(matricule,mois)
     return redirect(url_for("overview", matricule=matricule, mois=mois_precedent))
 
 
@@ -313,7 +341,5 @@ def mois_precedent(matricule, mois):
 def mois_suivant(matricule, mois):
     if valider_matricule(matricule) == False:
         return render_template("erreur.html", err=msg_err_matricule)
-    mois_suivant = datetime.strptime(mois, "%Y-%m")
-    mois_suivant += timedelta(weeks=5)
-    mois_suivant = mois_suivant.strftime("%Y-%m")
+    mois_suivant = avancer_un_mois(matricule, mois)
     return redirect(url_for("overview", matricule=matricule, mois=mois_suivant))
