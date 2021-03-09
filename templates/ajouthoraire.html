@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-   <head>
-      <meta charset="utf-8">
-      <title>Ajout d'horaire</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
-   </head>
-   <body>
+{% extends "base.html" %}
+
+{% block title %}Horaire du jour{% endblock %} 
+
+{% block content %}
       <div class="blocajouthoraire">
          <h1>ID: {{ matricule }} <br>
             Date: <a href='{{ url_for('jour_precedent', matricule=matricule, date_du_jour=date_du_jour)}}'>-</a>
@@ -54,5 +51,4 @@
          </table>
       </div>
       <script src="{{ url_for('static', filename = 'app.js' ) }}"></script>
-   </body>
-</html>
+{% endblock %}

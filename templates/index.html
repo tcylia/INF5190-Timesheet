@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-   <head>
-      <meta charset="utf-8">
-      <title>Accueil</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
-   </head>
-   <body>
+{% extends "base.html" %}
+
+{% block title %} Accueil {% endblock %} 
+
+{% block content %}
       <div class = "blocaccueil">
          <h1>Identification:</h1>
          {% if error %}
@@ -26,5 +23,4 @@
          </form>
       </div>
       <script src="{{ url_for('static', filename = 'app.js' ) }}"></script>
-   </body>
-</html>
+{% endblock %}

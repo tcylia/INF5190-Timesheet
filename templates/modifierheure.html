@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-   <head>
-      <meta charset="utf-8">
-      <title>Modifier un horaire</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
-   </head>
-   <body>
+{% extends "base.html" %}
+
+{% block title %} Modifier un horaire {% endblock %} 
+
+{% block content %}
       <div class="blocmodifierheure">
          <h1>User: {{ matricule }} <br>
             Date:  {{ date_du_jour }} <br>
@@ -31,5 +28,4 @@
             </table>
          </form>
       </div>
-   </body>
-</html>
+{% endblock %}

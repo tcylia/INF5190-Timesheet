@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Mois travaillés</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
+{% extends "base.html" %}
 
-    </head>
-    <body>
+{% block title %} Liste des mois travaillés {% endblock %} 
+
+{% block content %}
     <div class="bloclistemois">
         <h1>Heures déclarées:</h1>
         <div id="listemois">
@@ -15,5 +11,4 @@
             {% endfor %}
         </div>
     </div>
-    </body>   
-</html>
+{% endblock %}

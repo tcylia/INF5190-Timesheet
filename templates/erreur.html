@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="fr">
-   <head>
-      <meta charset="utf-8">
-      <title>Erreur 404</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
-   </head>
-   <body>
+{% extends "base.html" %}
+
+{% block title %} Erreur 404 {% endblock %} 
+
+{% block content %}
       <div class="blocerreur">
          {% if err %}
          <h2 class="err">Données introuvables :( </h2>
          <p>{{err}} <br> </p>
          {% endif %}
       </div>
-   </body>
-</html>
+{% endblock %}

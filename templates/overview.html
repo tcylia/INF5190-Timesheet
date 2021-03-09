@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-   <head>
-      <meta charset="utf-8">
-      <title>Overview</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
-   </head>
-   <body>
+{% extends "base.html" %}
+
+{% block title %} Overview {{ mois_string}} {% endblock %} 
+
+{% block content %}
       <div class="blocoverview">
          <h1>Overview <br>
             <a href='{{ url_for('mois_precedent', matricule=matricule, mois=mois)}}'>-</a>
@@ -23,5 +20,4 @@
             {% endfor %}  
          </div>
       </div>
-   </body>
-</html>
+{% endblock %}
