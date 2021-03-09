@@ -24,10 +24,12 @@ h1 {
 }
 
 a {
+    text-decoration: none;
     color: #645cd6;
 }
+
 a:hover {
-    text-decoration: none;
+    color:white;
 }
 div.blocaccueil {
     max-width: 25em;
@@ -92,9 +94,9 @@ div.blochoraire {
     padding: 2rem;
     border-radius: 4px;
     background-color:rgba(0, 0, 0, 0.5);
-    position: absolute;
-    top: 0em;
-    left: 44em;
+    position: relative;
+    top: -26.5em;
+    left: 22em;
 }
 
 div.blochoraire h1 {
@@ -232,19 +234,40 @@ div.blocmodifierheure input, textarea {
 
 div.blocoverview {
     width: 50em;
-    height: 30em;
+    height: 50em;
     margin:2rem auto;
     border:1px solid #b8bdb5;
     padding: 2rem;
     border-radius: 4px;
-    background-color:rgba(0, 0, 0, 0.5);
+    background-color:rgba(105, 98, 98, 0.5);
     text-align: center;
 }
 
 
 
-div.blocoverview div.jours-min:hover {
-    background-color:#f5f5f5;
+
+div.blocoverview div.jours-min {
+    width: 7em;
+    height: 7em;
+}
+
+div.blocoverview a div.jours-min div.num-day {
+    text-decoration: none;
+    font-size: 1.9em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:white;
+}
+
+div.blocoverview a div.jours-min div.hrs {
+    text-decoration: none;
+    color:#69df7d;
+    position:relative;
+    top:1em;
+}
+
+div.blocoverview a div.jours-min div.hrs:hover {
+    text-decoration: none;
+    color:#b5f0bf;
     opacity: 0.6;
     transition: 0.3s;
 }
@@ -281,5 +304,5 @@ div.days {
 }
 
 div.days div.jours-min {
-    border: 1px solid black;
+    border: 1px solid rgb(243, 229, 229);
 }

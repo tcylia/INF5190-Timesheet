@@ -13,8 +13,8 @@
             {% for day in day_month_min %} 
             <a href="{{ url_for( 'heure', matricule=matricule, date_du_jour=day[0]) }}">
                <div class="jours-min">
-                  <div>{{ day[0][8:10] }}</div>
-                  <div>total: {{ '%0.2f'|format(day[1]/60|float) }} h</div>
+                  <div class="num-day">{{ day[0][8:10] }}</div>
+                  <div class="hrs">total: {{ '%0.2f'|format(day[1]/60|float) }} h</div>
                </div>
             </a>
             {% endfor %}  
