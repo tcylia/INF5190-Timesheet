@@ -241,7 +241,9 @@ def listemois(matricule):
         return render_template("erreur.html", err=msg_err_matricule)
     dates_string = get_db().get_dates(matricule)
     liste_dates = []
+    liste_mois_mult = []
     liste_mois = []
+    dates_string = list(dict.fromkeys(dates_string))
     # transformer liste de dates (String) en objet Datetime
     for dates in dates_string:
         date = datetime.strptime(str(dates[0]), "%Y-%m-%d")
@@ -253,9 +255,15 @@ def listemois(matricule):
         mois_string = dates.strftime("%B %Y")
         mois.append(mois_iso)
         mois.append(mois_string)
-        liste_mois.append(mois)
+        liste_mois_mult.append(mois)
+    
+    duplicate = set()
+    for i in liste_mois_mult:
+        srtd = tuple(sorted(i))
+        if srtd not in duplicate:
+            liste_mois.append(i)
+            duplicate.add(srtd)
     # enlever les doublons
-    print(liste_mois)
     return render_template("listemois.html", matricule=matricule, liste_mois=liste_mois)
 
 
